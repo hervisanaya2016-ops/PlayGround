@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101114" />
+  <title>LATIN GARAGE — Street Legends</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Latin Garage home"><span class="brand-mark">LG<span>✦</span></span><span class="brand-copy">LATIN<br><b>GARAGE</b></span></a>
+      <div class="season-tag"><span class="live-dot"></span> SEASON 04 <i>·</i> CALLE CULTURE</div>
+      <div class="wallet"><span class="coin">₡</span><strong id="credits">2,450</strong><span class="wallet-label">CRÉDITOS</span><button class="plus" aria-label="Get credits">+</button></div>
+      <button class="menu-button" id="menuButton" aria-label="Open menu"><span></span><span></span></button>
+    </header>
+
+    <main class="garage-layout">
+      <section class="stage-column">
+        <div class="stage-topline"><div><span class="eyebrow">YOUR BUILD / <span id="buildNumber">01</span></span><h1>MAKE IT <em>YOURS.</em></h1></div><div class="stage-actions"><button class="run-button" id="runButton" title="Start a street run">▶ <span>STREET RUN</span></button><button class="icon-button" id="rotateButton" title="Auto rotate">⟳</button><button class="icon-button" id="photoButton" title="Screenshot">▣</button></div></div>
+        <div class="viewer" id="viewer">
+          <div class="viewer-glow"></div><div class="scene-label"><span class="scene-dot"></span> GARAGE STUDIO <span class="scene-divider">/</span> NIGHT SHIFT</div>
+          <div id="carCanvas" aria-label="Interactive 3D car preview"></div>
+          <div class="model-label"><span id="carClass">CLASSIC COMPACT</span><strong id="carName">LA FIERA 84</strong></div>
+          <div class="drag-hint"><span>↔</span> DRAG TO ROTATE</div>
+          <div class="view-chip"><span>3D</span> LIVE PREVIEW</div>
+          <div class="stage-shadow"></div>
+        </div>
+        <div class="vehicle-picker"><div class="picker-heading"><span>CHOOSE YOUR RIDE</span><small id="carCount">01 — 03</small></div><div id="carCards" class="car-cards"></div></div>
+      </section>
+
+      <aside class="customizer">
+        <div class="customizer-heading"><div><span class="eyebrow">BUILD YOUR LEGEND</span><h2>THE <em>SHOP</em></h2></div><button class="reset-button" id="resetButton">↺ <span>RESET</span></button></div>
+        <div class="category-tabs" id="categoryTabs" role="tablist" aria-label="Customization category">
+          <button class="category active" data-category="paint"><span class="cat-icon">◉</span><span>PAINT</span></button>
+          <button class="category" data-category="wheels"><span class="cat-icon">◎</span><span>WHEELS</span></button>
+          <button class="category" data-category="body"><span class="cat-icon">⌁</span><span>BODY</span></button>
+          <button class="category" data-category="style"><span class="cat-icon">✳</span><span>STYLE</span></button>
+        </div>
+        <div class="shop-scroll">
+          <div class="category-title"><div><span class="eyebrow" id="categoryEyebrow">COLOR & FINISH</span><h3 id="categoryTitle">PAINT SHOP</h3></div><span class="item-count" id="itemCount">06 OPTIONS</span></div>
+          <div id="customOptions" class="custom-options"></div>
+          <div class="build-stats"><div class="stats-title"><span>BUILD SPECS</span><span class="spec-level">LEVEL <b id="level">01</b></span></div><div class="stat-row"><span>STREET CRED</span><div class="stat-track"><i id="credBar" style="width:22%"></i></div><b id="credStat">220</b></div><div class="stat-row"><span>STYLE</span><div class="stat-track style-track"><i id="styleBar" style="width:34%"></i></div><b id="styleStat">340</b></div><div class="stat-row"><span>GRIP</span><div class="stat-track grip-track"><i id="gripBar" style="width:42%"></i></div><b id="gripStat">420</b></div></div>
+        </div>
+        <button class="save-build" id="saveButton"><span>✦</span> SAVE YOUR BUILD <i>→</i></button>
+      </aside>
+    </main>
+    <footer class="bottom-bar"><div class="footer-location"><span class="location-icon">⌖</span><span>MEDELLÍN, COLOMBIA</span><i>—</i><small>GARAGE 07</small></div><div class="footer-center"><span class="keycap">◀</span> <span class="keycap">▶</span> <small>SELECT RIDE</small><span class="footer-divider">|</span><span class="keycap">DRAG</span> <small>ROTATE</small></div><div class="footer-right">BUILT FOR THE STREETS <span>✦</span></div></footer>
+    <div class="toast" id="toast" role="status"></div>
+    <div class="modal-backdrop" id="modal"><div class="save-modal"><button class="modal-close" id="closeModal">×</button><div class="modal-badge">✦</div><span class="eyebrow">BUILD SAVED</span><h2>LOOKS <em>LEGENDARY.</em></h2><p>Your ride is ready for the streets. Your build has been saved to the garage.</p><div class="saved-car" id="savedCar"></div><button class="modal-done" id="doneButton">BACK TO GARAGE <span>→</span></button></div></div>
+    <div class="race-overlay" id="raceOverlay"><div class="race-card"><button class="modal-close" id="closeRace">×</button><span class="eyebrow">MEDELLÍN · NIGHT RUN</span><h2 id="raceTitle">STREET <em>RUN</em></h2><div class="race-road"><div class="road-lines"></div><div class="race-car">▰</div><div class="finish-line">▥</div></div><div class="race-hud"><div><small>DISTANCE</small><strong id="distanceHud">0m</strong></div><div><small>SPEED</small><strong id="speedHud">0 <i>KM/H</i></strong></div><div><small>BEST</small><strong id="bestHud">—</strong></div></div><div class="race-controls"><button id="leftControl">◀</button><span>STEER / DODGE TRAFFIC</span><button id="rightControl">▶</button></div><button class="modal-done" id="raceStart">START ENGINE <span>→</span></button><div class="race-result" id="raceResult"></div></div></div>
+  </div>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
